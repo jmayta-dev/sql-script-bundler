@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +14,7 @@ static class Program
     [STAThread]
     static void Main()
     {
-
+        Console.OutputEncoding = Encoding.UTF8;
         var builder = new ConfigurationBuilder();
         BuildConfig(builder);
 
@@ -24,7 +25,7 @@ static class Program
             .WriteTo.Console()
             .CreateLogger();
 
-        Log.Information("Iniciando Aplicación.");
+        Log.Logger.Information("Iniciando Aplicación.");
 
         try
         {
@@ -34,7 +35,7 @@ static class Program
             .ConfigureServices((context, services) =>
             {
                 // register services
-                services.AddTransient<FrmInicio>();
+                services.AddTransient<FrmBundler>();
             })
             .Build();
 

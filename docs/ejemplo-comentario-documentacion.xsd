@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="documentacion">
+    <xs:element name="procedure">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="copyright" type="xs:string" />
-                <xs:element name="objetivo" type="xs:string" />
-                <xs:element name="fechaCreacion" type="xs:string" />
-                <xs:element name="modulo" type="xs:string" />
-                <xs:element name="autor">
+                <xs:element name="description" type="xs:string" />
+                <xs:element name="createdAt" type="xs:string" />
+                <xs:element name="author">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="nombre" type="xs:string" />
+                            <xs:element name="authorId" type="xs:string" />
+                            <xs:element name="name" type="xs:string" />
                             <xs:element name="email" type="xs:string" />
+                            <xs:element name="phone" type="xs:string" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="modificaciones">
+                <xs:element name="updatings">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="modificacion" maxOccurs="unbounded">
+                            <xs:element name="update" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="fecha" minOccurs="0" type="xs:string" />
-                                        <xs:element name="autorId" minOccurs="0" type="xs:string" />
-                                        <xs:element name="detalle" type="xs:string" />
-                                    </xs:sequence>
-                                    <xs:attribute name="requerimiento" type="xs:integer" />
-                                    <xs:attribute name="autorId" />
-                                    <xs:attribute name="fecha" />
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="authorId" use="required" />
+                                            <xs:attribute name="updatedAt" use="required" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -35,8 +34,7 @@
                 </xs:element>
                 <xs:element name="ejemplo" />
             </xs:sequence>
-            <xs:attribute name="nombre" use="required" />
-            <xs:attribute name="requerimiento" type="xs:integer" use="required" />
+            <xs:attribute name="name" use="required" />
         </xs:complexType>
     </xs:element>
 </xs:schema>

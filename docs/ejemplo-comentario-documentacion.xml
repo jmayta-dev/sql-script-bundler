@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<documentacion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<procedure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="ejemplo-comentario-documentacion.xsd"
-    nombre="uspListarColaboradores" requerimiento="14093">
-    <copyright>
-        © Copyright 2024 MunayWorkers. Todos los derechos reservados.
-    </copyright>
-    <objetivo>Retorna lista de colaboradores</objetivo>
-    <fechaCreacion>2024.06.06</fechaCreacion>
-    <modulo>SSB</modulo>
-    <autor>
-        <nombre>Jheison J. Mayta C.</nombre>
+    name="uspListarColaboradores">
+    <copyright>&#169; Copyright 2024 MunayWorkers. All rights reserved.</copyright>
+    <description>Return list of collaborators</description>
+    <createdAt>2024.06.06</createdAt>
+    <author>
+        <authorId>jmayta</authorId>
+        <name>Jheison J. Mayta C.</name>
         <email>jmayta.caceres@gmail.com</email>
-    </autor>
-    <modificaciones>
-        <modificacion requerimiento="14201">
-            <fecha>2024.06.09</fecha>
-            <autorId>jmayta</autorId>
-            <detalle>Se agregó comentario de modificación</detalle>
-        </modificacion>
-        <modificacion autorId="jmayta" fecha="2024.06.09">
-            <detalle>Se agregó comentario de modificación</detalle>
-        </modificacion>
-        <modificacion>
-            <fecha>2024.06.09</fecha>
-            <autorId>ayataki</autorId>
-            <detalle>Se cambió el formato de comentario</detalle>
-        </modificacion>
-    </modificaciones>
+        <phone>999000999</phone>
+    </author>
+    <updatings>
+        <update authorId="jmayta" updatedAt="2024.06.07">
+            Se agregó comentario de modificación
+        </update>
+        <update authorId="jmayta" updatedAt="2024.06.09">
+            Se cambió el formato de comentario
+        </update>
+    </updatings>
     <ejemplo>
         <![CDATA[
             EXEC uspListarColaboradores;
         ]]>
     </ejemplo>
-</documentacion>
+</procedure>
