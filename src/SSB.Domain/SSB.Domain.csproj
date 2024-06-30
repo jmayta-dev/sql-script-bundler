@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SSB.Shared\SSB.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
