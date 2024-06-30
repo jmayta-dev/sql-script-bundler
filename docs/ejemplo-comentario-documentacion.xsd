@@ -16,7 +16,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="updatings">
+                <xs:element name="updates">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="update" maxOccurs="unbounded">
