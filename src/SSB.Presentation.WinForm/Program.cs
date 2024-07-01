@@ -1,8 +1,10 @@
-using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using SSB.Application;
+using SSB.Services;
+using System.Text;
 
 namespace SSB.Presentation.WinForm;
 
@@ -36,6 +38,8 @@ static class Program
             {
                 // register services
                 services.AddTransient<FrmBundler>();
+                services.AddApplicationLayer();
+                services.AddServiceLayer();
             })
             .Build();
 
@@ -43,16 +47,13 @@ static class Program
             if (!System.Diagnostics.Debugger.IsAttached)
             {
                 // Add the event handler for handling UI thread exceptions to the event.
-                Application.ThreadException += (sender, args) =>
-                {
-                    Log.Error(args.Exception, "Excepción de subproceso no controlada.");
-                    MessageBox.Show("Ocurrió un error inesperado.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                };
+                System.Windows.Forms.Application.ThreadException += OnThreadException;
+
+                System.Windows.Forms.Application.ApplicationExit += OnApplicationExit;
 
                 // Set the unhandled exception mode to force all Windows Forms errors
                 // to go through our handler.
-                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
                 // Add the event handler for handling non-UI thread exceptions to the event. 
                 AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
@@ -66,7 +67,7 @@ static class Program
             ApplicationConfiguration.Initialize();
 
             var startupForm = host.Services.GetRequiredService<FrmBundler>();
-            Application.Run(startupForm);
+            System.Windows.Forms.Application.Run(startupForm);
 
         }
         catch (Exception ex)
@@ -75,8 +76,22 @@ static class Program
         }
         finally
         {
-            Log.CloseAndFlush();
+            System.Windows.Forms.Application.Exit();
         }
+    }
+
+    private static void OnThreadException(object sender, ThreadExceptionEventArgs args)
+    {
+        Log.Error(args.Exception, "Excepción de subproceso no controlada.");
+        MessageBox.Show("Ocurrió un error inesperado.", "Error",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+
+    private static void OnApplicationExit(object? sender, EventArgs args)
+    {
+        // Detach ThreadException event handler to avoid memory leaks.
+        System.Windows.Forms.Application.ThreadException -= OnThreadException;
+        Log.CloseAndFlush();
     }
 
     static void BuildConfig(IConfigurationBuilder builder)
