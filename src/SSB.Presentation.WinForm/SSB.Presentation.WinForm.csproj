@@ -9,17 +9,31 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="appsettings.Develop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="appsettings.Develop.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
         <Content Include="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="Serilog" Version="4.0.0" />
         <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1" />
         <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SSB.Application\SSB.Application.csproj" />
+      <ProjectReference Include="..\SSB.Services\SSB.Services.csproj" />
+      <ProjectReference Include="..\SSB.Shared\SSB.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

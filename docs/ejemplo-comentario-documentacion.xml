@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<procedure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="ejemplo-comentario-documentacion.xsd"
-    name="uspListarColaboradores">
+<procedure name="uspListarColaboradores">
     <copyright>&#169; Copyright 2024 MunayWorkers. All rights reserved.</copyright>
     <description>Return list of collaborators</description>
     <createdAt>2024.06.06</createdAt>
@@ -11,14 +8,14 @@
         <email>jmayta.caceres@gmail.com</email>
         <phone>999000999</phone>
     </author>
-    <updatings>
+    <updates>
         <update authorId="jmayta" updatedAt="2024.06.07">
             Se agregó comentario de modificación
         </update>
         <update authorId="jmayta" updatedAt="2024.06.09">
             Se cambió el formato de comentario
         </update>
-    </updatings>
+    </updates>
     <ejemplo>
         <![CDATA[
             EXEC uspListarColaboradores;
